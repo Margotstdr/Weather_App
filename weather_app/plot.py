@@ -9,7 +9,14 @@ def create_plot(dates, temperatures_min, temperatures_max):
     figure = Figure(figsize = (3.8, 3.2))
     axes = figure.add_subplot(111)
 
+    x = range(len(dates))
 
+    axes.plot(x, temperatures_max, color = "red", marker = "o")
+    axes.plot(x, temperatures_min, color = "blue", marker = "o")
+    axes.fill_between(x, temperatures_min, temperatures_max, color = "gray", alpha = 0.15)
+
+    axes.set_title("Températures (°C)")
+    axes.grid(True)
     
     # Améliore la lisibilité
     axes.set_xticks(range(len(dates)))

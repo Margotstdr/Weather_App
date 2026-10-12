@@ -60,7 +60,30 @@ def draw_forecast(window, canvas):
 
     erase_screen(canvas)
     # start_day = ...
-    dates, t_mins, t_maxs = [], [], [] # TODO
 
-    # ...
+    dates = ['2026-10-06', '2026-10-07', '2026-10-08', '2026-10-09', '2026-10-10', '2026-10-11', '2026-10-12']
+    t_mins = [18.0, 17.8, 12.6, 7.9, 12.3, 13.4, 13.1]
+    t_maxs = [27.4, 20.6, 17.6, 18.7, 20.2, 20.0, 20.7]
+
+    # Titre et période
+    canvas.create_text(WIDTH / 2, 40, 
+                    text = "Prévisions sur 7 jours - " + city,
+                    font = ("Helvetica", 14, "bold"),
+                    fill = "white", tags = "ecran")
+    
+    canvas.create_text(WIDTH / 2, 65,
+                    text = "Du " + dates[0] + " au " + dates[-1],
+                    font = ("Helvetica", 10),
+                    fill = "white", tags = "ecran")
+
+    figure = create_plot(dates, t_mins, t_maxs)
+    zone_graphique = FigureCanvasTkAgg(figure, master = window)
+    canvas.create_window(WIDTH / 2, HEIGHT / 2,
+                        window = zone_graphique.get_tk_widget(),
+                        tags = "ecran")
+
+    button = tk.Button(window, text = "Accueil",
+                    command = lambda : draw_welcome_screen(window, canvas))
+    
+    canvas.create_window(WIDTH / 2, HEIGHT - 60, window = button, tags = "ecran")
 
