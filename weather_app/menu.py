@@ -48,12 +48,37 @@ def draw_welcome_screen(window, canvas):
     global weather_icon
 
     erase_screen(canvas)
-    temperature, code, t_min, t_max = 0, 0, 0, 0 # TODO
+    temperature, code, t_min, t_max = 19.7, 0, 18.0, 27.4  # données d'exemple (remplacées en partie 4)
 
-    # TODO
-    # canvas.create_text(...)
+    # Nom de la ville
+    canvas.create_text(WIDTH / 2, 70,
+                    text = city,
+                    font = ("Helvetica", 28, "bold"),
+                    fill = "white", tags = "ecran")
 
-    # ...
+    # Icône de la météo actuelle (icon_of_code vient de weather.py)
+    icon_name = icon_of_code(code)
+    icon = Image.open("assets/icons/" + icon_name + ".png").convert("RGBA")
+    icon = icon.resize((120, 120))
+    weather_icon = ImageTk.PhotoImage(icon)
+    canvas.create_image(WIDTH / 2, 210, image = weather_icon, tags = "ecran")
+
+    # Température actuelle
+    canvas.create_text(WIDTH / 2, 340,
+                    text = str(round(temperature)) + " °C",
+                    font = ("Helvetica", 44, "bold"),
+                    fill = "white", tags = "ecran")
+
+    # Min / Max du jour
+    canvas.create_text(WIDTH / 2, 410,
+                    text = "Min : " + str(round(t_min)) + " °C    Max : " + str(round(t_max)) + " °C",
+                    font = ("Helvetica", 12),
+                    fill = "white", tags = "ecran")
+
+    # Bouton vers les prévisions
+    button = tk.Button(window, text = "Prévisions 7 jours",
+                    command = lambda : draw_forecast(window, canvas))
+    canvas.create_window(WIDTH / 2, HEIGHT - 80, window = button, tags = "ecran")
 
 def draw_forecast(window, canvas):
     """Écran 2 : graphique des températures sur 7 jours"""
