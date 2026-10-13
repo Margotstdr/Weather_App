@@ -22,7 +22,6 @@ def fetch_weather_data(parameters):
             "Impossible de joindre Open-Meteo.\nVérifiez votre connexion internet."
         ) from error
 
-    # En cas de refus, Open-Meteo renvoie {"error": true, "reason": "..."} au lieu des données
     if response.status_code != 200 or data.get("error"):
         reason = data.get("reason", f"code HTTP {response.status_code}")
         raise WeatherAPIError(f"Erreur Open-Meteo :\n{reason}")
@@ -71,7 +70,6 @@ def get_forecast(city, start_day):
     temperatures_max = data["daily"]["temperature_2m_max"]
     codes = data["daily"]["weather_code"]
 
-    # Trop loin dans le passé, l'API répond 200 mais avec des valeurs vides
     if None in temperatures_min or None in temperatures_max:
         raise WeatherAPIError("Pas de données disponibles\npour cette période.")
     return dates, temperatures_min, temperatures_max, codes

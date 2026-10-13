@@ -109,7 +109,6 @@ def draw_welcome_screen(window, canvas):
         tags="ecran",
     )
 
-    # Min / Max
     canvas.create_text(
         WIDTH / 2,
         350,
@@ -119,7 +118,6 @@ def draw_welcome_screen(window, canvas):
         tags="ecran",
     )
 
-    # Bouton vers les prévisions
     button = tk.Button(
         window, text="Prévisions 7 jours", command=lambda: open_forecast(window, canvas)
     )
@@ -211,7 +209,6 @@ def draw_forecast(window, canvas):
         tags="ecran",
     )
 
-    # Graphique Matplotlib, avec l'icône météo de chaque jour
     day_icons = [
         load_image(f"icons/{choose_icon(code)}.png", (30, 30)) for code in codes
     ]

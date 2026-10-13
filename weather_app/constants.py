@@ -21,17 +21,12 @@ WIDTH = 400
 HEIGHT = 500
 URL_API = "https://api.open-meteo.com/v1/forecast"
 
-# Chemin absolu : l'appli doit trouver ses images même si on la lance depuis un autre dossier
 ASSETS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
 
-# Nombre de jours affichés dans l'écran des prévisions
 FORECAST_DAYS = 7
 
-# Limites mesurées sur l'API : au-delà de J+15 elle refuse la requête,
-# avant J-70 elle renvoie des températures vides (None)
 MAX_FUTURE_DAYS = 15
 MAX_PAST_DAYS = 70
 
-# Heures (heure locale) entre lesquelles on considère qu'il fait jour
 DAY_START_HOUR = 7
 NIGHT_START_HOUR = 20

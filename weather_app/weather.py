@@ -6,7 +6,6 @@ from constants import *
 # Météo
 # ----------------------------------------------------------------------
 
-# Seules ces icônes montrent un soleil : les autres (pluie, neige...) conviennent aussi la nuit
 NIGHT_ICONS = {
     "sunny": "night",
     "partly_cloudy_day": "partly_cloudy_night",
@@ -44,7 +43,7 @@ def time_of_day(hour=None):
 def choose_icon(code, is_night=False):
     """Renvoie le nom du fichier d'icône à afficher pour un code météo, en version nuit si besoin."""
     icon_name = icon_of_code(code)
-    # Il n'y a pas d'icône "unknown" dans assets/icons
+    
     if icon_name == "unknown":
         icon_name = "cloudy"
     if is_night:
